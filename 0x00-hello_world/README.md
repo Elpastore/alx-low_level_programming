@@ -11,3 +11,9 @@
 						Example: if the C file is main.c, the output file should be main.s
 3-name:					-script that compiles a C file and creates an executable named cisfun.
 						The C file name will be saved in the variable $CFILE
+4-puts.c:				- C program that prints exactly "Programming is like building a multilingual puzzle, followed by a new line
+					  Use the function puts
+					  You are not allowed to use printf
+					  Your program should end with the value 0
+					  Note that to respect the betty style, you should use vi editor instead of emacs because i've done the 
+					  remark that emacs doesn't allow to put tabulation like the request of betty style
