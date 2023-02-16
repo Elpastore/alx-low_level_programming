@@ -17,3 +17,8 @@
 					  Your program should end with the value 0
 					  Note that to respect the betty style, you should use vi editor instead of emacs because i've done the 
 					  remark that emacs doesn't allow to put tabulation like the request of betty style
+5-printf.c:				-C program that prints exactly with proper grammar, but the outcome is a piece of art,, followed by a new l							ine.
+					   Use the function printf
+					   You are not allowed to use the function puts
+					   Your program should return 0
+					   Your program should compile without warning when using the -Wall gcc option
