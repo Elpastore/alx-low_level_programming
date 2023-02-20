@@ -24,8 +24,8 @@ int main(void)
 				putchar (c + '0');
 				if (a < 7)
 				{
-					putchar (',');
-					putchar (' ');
+				putchar (',');
+				putchar (' ');
 				}
 				c++;
 			}
