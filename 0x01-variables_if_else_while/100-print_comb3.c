@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <ctype.h>
 /**
  * main -all possible combinations of single-digit numbers.
  *
@@ -9,7 +8,6 @@ int main(void)
 {
 	int i = 0;
 	int j;
-
 
 	while (i < 10)
 	{
