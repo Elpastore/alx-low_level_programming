@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 /**
  * main -prints all possible different combinations of three digits
  *
@@ -12,7 +11,6 @@ int main(void)
 	int c;
 
 	a = 0;
-
 	while (a < 8)
 	{
 		b = a + 1;
