@@ -1,13 +1,9 @@
 #include <stdio.h>
-#include "_putchar.h"
+#include "main.h"
 /**
- * main -is the entry point
- * _putchar -print character
- *
- * Return: zero  iif no  error
+  * print_alphabet -print alphabet letter
  */
-
-int main(void)
+void print_alphabet(void)
 {
 	char lt;
 
@@ -16,5 +12,4 @@ int main(void)
 		_putchar(lt);
 	}
 	_putchar('\n');
-	return (0);
 }
