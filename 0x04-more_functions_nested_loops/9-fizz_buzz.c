@@ -1,15 +1,17 @@
 #include <stdio.h>
 /**
- * main -the entry point
- * Return: zero if no error
+ * main - Fizz Buzz test
+ *
+ * Return: zero if successfu
  */
+
 int main(void)
 {
-	int a;
+	int a = 1;
 
-	for (a = 1; a <= 100; a++)
+	while (a <= 100)
 	{
-		if ((a % 3 == 0) && (a % 5 == 0))
+		if (a % 3 == 0 && a % 5 == 0)
 		{
 			printf("FizzBuzz");
 		}
@@ -22,10 +24,16 @@ int main(void)
 			printf("Buzz");
 		}
 		else
-			printf("%i ", a);
+		{
+			printf("%d", a);
+		}
 		if (a != 100)
-			printf(" ");
+		{
+			putchar(' ');
+		}
+
+		a++;
 	}
-	printf("\n");
+	putchar('\n');
 	return (0);
 }
