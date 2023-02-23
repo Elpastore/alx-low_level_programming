@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * print_line -function that draws a straight line in the terminal.
+ * print_diagonal -function that draws a straight line in the terminal.
  * @n: number of times
  */
 void print_diagonal(int n)
