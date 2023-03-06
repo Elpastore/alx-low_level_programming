@@ -3,7 +3,6 @@
  * print_chessboard -function that prints the chessboard.
  * @a: rows
  */
-#include <stdio.h>
 
 void print_chessboard(char (*a)[8])
 {
