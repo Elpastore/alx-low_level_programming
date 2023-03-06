@@ -16,7 +16,7 @@ char *_strstr(char *haystack, char *needle)
 	{
 		if (haystack[i] == *p && *p != '\0')
 		{
-			return (&haystack[i]);
+			return (char *)p;
 		}
 	}
 	return (NULL);
