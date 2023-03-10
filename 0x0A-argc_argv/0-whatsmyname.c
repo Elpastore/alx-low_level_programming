@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 /**
  * main -the entry point of the program
  * @argc: the number of element
