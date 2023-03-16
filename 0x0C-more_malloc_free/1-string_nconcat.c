@@ -1,22 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
 /**
- * lenght_string -function that compute the lenght of a given string
- * @s: the given string
- * Return: the lenght of the string
- */
-
-int lenght_string(char *s)
-{
-	int leng;
-
-	for (leng = 0; s[leng] != '\0'; leng++)
-	{
-	}
-	return (leng);
-}
-
-/**
  * string_nconcat -function that concatenates two strings.
  * @s1: firsst string
  * @s2: seocond string
@@ -41,7 +25,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	{
 		ptr[j++] = s1[i];
 	}
-	for (i = 0; s2[i] && i < n; i++)
+	for (i = 0; s2[i] &!= '\0' & i < n; i++)
 	{
 		ptr[j++] = s2[i];
 	}
