@@ -2,58 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/**
- * prompt -function that allows to enter and execute a command
- * @av: array of arguments
- * @env: array of environment variables
- */
-void prompt(char **av, char **env)
-{
-        char *command = NULL;
-        size_t size = 0;
-        ssize_t numb_char;
-        char *args[MAX_ARGS];
-        pid_t child_pid;
-        int status;
 
-        while (1) /* infinite loop */
-        {
-                printf("#cisfun$ ");
-                numb_char = getline(&command, &size, stdin);
-                if (numb_char == -1)
-                {
-                        free(command);
-                        exit(EXIT_FAILURE);
-                }
-                command[strcspn(command, "\n")] = '\0'; /* remove newline character */
-                parse_args(command, args);
-                if (args[0] == NULL)
-                        continue;
-                if (find_command(args[0], env) == NULL)
-                {
-                        printf("%s: command not found\n", args[0]);
-                        continue;
-                }
-                child_pid = fork();
-                if (child_pid == -1)
-                {
-                        perror("Error");
-                        free(command);
-                        exit(EXIT_FAILURE);
-                }
-                else if (child_pid == 0)
-                {
-                        if (execve(args[0], args, env) == -1)
-                        {
-                                perror("execve");
-                                free(command);
-                                exit(EXIT_FAILURE);
-                        }
-                }
-                else
-                        wait(&status);
-        }
-}
 
 /**
  * parse_args - function that parse the command line into arguments
@@ -109,4 +58,56 @@ char *find_command(char *command, char **env)
         }
         free(path_copy);
         return NULL; /* command not found */
+}
+/**
+ * prompt -function that allows to enter and execute a command
+ * @av: array of arguments
+ * @env: array of environment variables
+ */
+void prompt(char **av, char **env)
+{
+        char *command = NULL;
+        size_t size = 0;
+        ssize_t numb_char;
+        char *args[MAX_ARGS];
+        pid_t child_pid;
+        int status;
+
+        while (1) /* infinite loop */
+        {
+                printf("#cisfun$ ");
+                numb_char = getline(&command, &size, stdin);
+                if (numb_char == -1)
+                {
+                        free(command);
+                        exit(EXIT_FAILURE);
+                }
+                command[strcspn(command, "\n")] = '\0'; /* remove newline character */
+                parse_args(command, args);
+                if (args[0] == NULL)
+                        continue;
+                if (find_command(args[0], env) == NULL)
+                {
+                        printf("%s: command not found\n", args[0]);
+                        continue;
+                }
+                child_pid = fork();
+                if (child_pid == -1)
+                {
+                        perror("Error");
+                        free(command);
+                        exit(EXIT_FAILURE);
+                }
+                else if (child_pid == 0)
+                {
+                        if (execve(args[0], args, env) == -1)
+                        {
+                                perror("execve");
+                                free(command);
+                                exit(EXIT_FAILURE);
+                        }
+                }
+                else
+                        wait(&status);
+        }
 }
