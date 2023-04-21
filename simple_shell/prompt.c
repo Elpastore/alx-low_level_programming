@@ -82,7 +82,7 @@ void prompt(char **av, char **env)
 	char *command_line = NULL;
 	char **args = NULL;
 
-	while (1) /* To create an infinite loop */
+	while (1) /* To create an infinite loop using while loop and 1 to enter in infinite */
 	{
 		command_line = get_command_line();
 		args = parse_command_line(command_line);
