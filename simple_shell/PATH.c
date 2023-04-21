@@ -1,36 +1,43 @@
-#include <shell.h>
-/**
- * find_command - function that searches for the command in the PATH
- * @command: command to search for
- * @env: array of environment variables
- * Return: full path of the command if found, NULL otherwise
- */
-char *find_command(char *command, char **env)
+#include "shell.h"
+void execute_command(char **args, char **env)
 {
-        char *path, *path_copy, *dir;
-        char full_path[PATH_MAX];
-        int i;
+    char *path = getenv("PATH");
+    char *dir, *command;
+    int found = 0;
+    struct stat st;
 
-        for (i = 0; env[i] != NULL; i++)
+    while ((dir = strtok(path, ":")))
+    {
+        path = NULL; // reset strtok
+        command = malloc(strlen(dir) + strlen(args[0]) + 2); // +2 for '/' and null terminator
+        sprintf(command, "%s/%s", dir, args[0]);
+        if (access(command, X_OK) == 0)
         {
-                if (strncmp(env[i], "PATH=", 5) == 0)
+            found = 1;
+            pid_t pid = fork();
+            if (pid == -1)
+            {
+                perror("fork");
+                exit(EXIT_FAILURE);
+            }
+            else if (pid == 0)
+            {
+                if (execve(command, args, env) == -1)
                 {
-                        path = env[i] + 5; /* get the value of the PATH variable */
-                        break;
+                    perror("execve");
+                    exit(EXIT_FAILURE);
                 }
+            }
+            else
+            {
+                wait(NULL);
+            }
+            break; // stop searching
         }
-        path_copy = strdup(path); /* create a copy of the PATH variable */
-        dir = strtok(path_copy, ":"); /* split the PATH into directories */
-        while (dir != NULL)
-        {
-                snprintf(full_path, PATH_MAX, "%s/%s", dir, command);
-                if (access(full_path, X_OK) == 0) /* check if the command exists */
-                {
-                        free(path_copy);
-                        return strdup(full_path);
-                }
-                dir = strtok(NULL, ":");
-        }
-        free(path_copy);
-        return NULL; /* command not found */
+        free(command);
+    }
+    if (!found)
+    {
+        printf("%s: command not found\n", args[0]);
+    }
 }
