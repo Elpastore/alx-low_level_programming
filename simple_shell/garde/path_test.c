@@ -64,7 +64,7 @@ char *find_command(char *command, char **env)
  * @av: array of arguments
  * @env: array of environment variables
  */
-void prompt(char **av, char **env)
+void prompt(__attribute ((unused)) char **av, char **env)
 {
         char *command = NULL;
         size_t size = 0;
