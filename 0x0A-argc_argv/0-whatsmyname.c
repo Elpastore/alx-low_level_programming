@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 /**
  * main - the entry poin of the program
  * @argc: the number of element
