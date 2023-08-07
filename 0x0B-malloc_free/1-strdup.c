@@ -21,15 +21,16 @@ int _strlen(char *s)
  */
 char *_strdup(char *str)
 {
+
 	char *p;
-	int len_str = _strlen(str) + 1;
-	int i;
+	int len_str, i;
 
 	if (str == NULL)
 	{
 		return (NULL);
 	}
 
+	len_str = _strlen(str);
 	p = malloc(sizeof(char) * len_str);
 
 	if (p == NULL)
