@@ -22,7 +22,7 @@ int _strlen(char *s)
 char *_strdup(char *str)
 {
 	char *p;
-	int len_str = _strlen(str);
+	int len_str = _strlen(str) + 1;
 	int i;
 
 	if (str == NULL)
