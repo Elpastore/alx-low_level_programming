@@ -1,7 +1,7 @@
 #ifndef _DOG_H
 #define _DOG_H
 
-
+typedef struct dog dog_t;
 
 
 /**
