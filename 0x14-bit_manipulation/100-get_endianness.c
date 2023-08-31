@@ -5,8 +5,8 @@
  */
 int get_endianness(void)
 {
-	int number = 1;
-	int *check = (int *) &number;
+	unsigned int number = 1;
+	unsigned char *check = (unsigned char *) &number;
 
 	if (*check == 1)
 		return (1);
