@@ -12,7 +12,7 @@ hash_node_t *insert_node(const char *key, const char *value)
 
 	if (new_node == NULL)
 	{
-		return (0);
+		return (NULL);
 	}
 	new_node->key = strdup(key);
 	if (new_node->key == NULL)
@@ -27,6 +27,8 @@ hash_node_t *insert_node(const char *key, const char *value)
 		free(new_node);
 		return (NULL);
 	}
+	new_node->next = NULL;
+
 	return (new_node);
 }
 
@@ -39,15 +41,14 @@ hash_node_t *insert_node(const char *key, const char *value)
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned int index = key_index((const unsigned char *)key, ht->size);
+	unsigned long int index;
 	hash_node_t *new_node, *current;
 	char *dup_value;
 
-	if (ht == NULL || ht->size == 0 || key == NULL || value == NULL)
+	if (ht == NULL || ht->size == 0 || key == NULL
+		|| strlen(key) == 0 || value == NULL)
 		return (0);
-	if (strcmp(key, "") == 0)
-		return (0);
-
+	index = key_index((const unsigned char *)key, ht->size);
 	current = ht->array[index];
 
 	while (current != NULL)
