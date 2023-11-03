@@ -14,6 +14,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (ht == NULL || ht->size == 0 || key == NULL || value == NULL)
 		return (0);
+	if (strcmp(key, "") == 0)
+		return (0);
 	if (new_node == NULL)
 	{
 		return (0);
