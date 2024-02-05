@@ -39,7 +39,7 @@ int jump_search(int *array, size_t size, int value)
 	}
 	if (prev >= size || array[prev] > value)
 		return (-1);
-	printf("Value find in indexes [%ld] and [%ld]\n", prev, m);
+	printf("Value found in indexes [%ld] and [%ld]\n", prev, m);
 
 	while (prev <= min(m, size - 1) && value >= array[prev])
 	{
