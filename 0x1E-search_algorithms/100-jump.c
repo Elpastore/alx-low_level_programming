@@ -8,7 +8,7 @@
  */
 size_t min(size_t a, size_t b)
 {
-	return ((a > b) ? a : b);
+	return ((a < b) ? a : b);
 }
 /**
  * jump_search -  searches for a value using the Jump search algorithm
