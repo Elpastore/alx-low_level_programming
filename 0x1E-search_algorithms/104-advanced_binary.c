@@ -2,52 +2,19 @@
 /**
  * print_array - function that print array
  * @array: pointer to the first elm of array
- * @L: the lowest value;
- * @R: the highest value
+ * @size: the number of elements in array
  */
-void print_array(int *array, size_t L, size_t R)
+void print_array(int *array, size_t size)
 {
 	size_t i;
 
-	for (i = L; i <= R; i++)
+	for (i = 0; i <= size - 1; i++)
 	{
-		if (i != R)
+		if (i != size - 1)
 			printf("%d, ", array[i]);
 		else
 			printf("%d\n", array[i]);
 	}
-}
-/**
- * recursive_binary - binary search algorithm using recursive
- * @array:  pointer to the first element of the array
- * @L: the lowest  element in array
- * @R: the highest element in array
- * @value: value to search for
- * Return: the matched element or -1 if no match
- */
-
-int recursive_binary(int *array, size_t L, size_t R, int value)
-{
-	size_t M;
-
-	if (array == NULL || R <= 0)
-		return (-1);
-	if (L <= R)
-	{
-		printf("Searching in array: ");
-		print_array(array, L, R);
-		M = L + (R - L) / 2;
-
-		if (array[M] < value)
-
-			return (recursive_binary(array, M + 1, R, value));
-		else if (array[M] > value)
-			return (recursive_binary(array, L, M - 1, value));
-		if (array[M - 1] == value)
-			return (recursive_binary(array, L, M, value));
-		return ((int)M);
-	}
-	return (-1);
 }
 /**
  * advanced_binary - advanced_binary search algorithm
@@ -58,12 +25,34 @@ int recursive_binary(int *array, size_t L, size_t R, int value)
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-	size_t L, R;
 
-	L = 0;
-	R = size - 1;
+	size_t mid;
+	int r = -1;
+
 	if (array == NULL || size <= 0)
 		return (-1);
 
-	return (recursive_binary(array, L, R, value));
+	mid = (size - 1) / 2;
+
+	printf("Searching in array: ");
+	print_array(array, size);
+
+	if (array[mid] < value)
+	{
+		r = advanced_binary(array + (mid + 1), size - (mid + 1), value);
+		if (r >= 0)
+			r += mid + 1;
+
+	}
+	else if (array[mid] > value)
+	{
+		r = advanced_binary(array, mid + 1, value);
+	}
+	else if (mid == 0 || array[mid - 1] < array[mid])
+		r = mid;
+	else
+		r = advanced_binary(array, mid + 1, value);
+
+	return (r);
+
 }
